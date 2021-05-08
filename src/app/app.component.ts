@@ -10,15 +10,22 @@ import { SocketioService } from './services/socketio.service';
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'my-app';
-  suscription$: Subscription;
+  //suscription$: Subscription;
   isRegistro:boolean = false;
   listaUsuarios: any[] = [];
 
-  constructor(public socket: SocketioService, private authSvc: AuthService) {
-      this.suscription$ = this.socket.on('broadcast-message').subscribe((usersList: any) => {
+  constructor() {
+
+    /*this.suscription$ = this.socket.on('broadcast-message').subscribe((usersList: any) => {
         this.listaUsuarios = usersList;
       });
-      this.socket.checkStatus();
+
+      this.socket.on('jwtValue').subscribe((jwToken:any)=>{
+        console.log(jwToken);
+        localStorage.setItem("jwToken", jwToken);
+      });
+
+      this.socket.checkStatus();*/
   }
 
   ngOnInit() {
@@ -28,7 +35,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ShowRegistro(accion:boolean){
     this.isRegistro = accion;
   }
-
+/*
   loginOAuth2(provider: string) {
     console.log('Provider: ', provider);
     this.authSvc.loginOAuth2(provider)
@@ -45,17 +52,18 @@ export class AppComponent implements OnInit, OnDestroy {
           error
         }
       })
-  }
+  }*/
 
-  sendMessage(msg: string) {
+  /*sendMessage(msg: string) {
     console.log(msg);
     this.socket.emit('message', {
       client: 'Angular', msg
     });
-  }
+  }*/
 
   ngOnDestroy(): void {
-    this.suscription$.unsubscribe();
+    //this.suscription$.unsubscribe();
   }
+
 
 }

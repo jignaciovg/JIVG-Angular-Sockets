@@ -37,14 +37,19 @@ export class HomeComponent implements OnInit {
       this.authSvc.DeleteSocketId(this.tokenDecode.email).then(
         (user: any) => {
           this.socket.emit('disconnect', {
-            email: user.email
+            email: user.email,
+          });
+          this.suscription$ = this.socket.on('log-out').subscribe((usersList: any) => {
+            this.listaUsuarios = usersList;
           });
         }
       )
         localStorage.removeItem('jwToken');
         localStorage.removeItem('jwToken');
+        this.socket.checkStatus();
         this.router.navigate(["/login"]);
     } catch (error) {
+      this.socket.checkStatus();
       localStorage.removeItem('jwToken');
       localStorage.removeItem('jwToken');
       this.router.navigate(["/login"]);

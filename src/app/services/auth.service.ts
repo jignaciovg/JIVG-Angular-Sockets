@@ -77,7 +77,7 @@ export class AuthService {
     }
 
     //console.log('body:'+JSON.stringify(bodyRequest));
-    return await this.http.post("http://localhost:3003/checkSocket",
+    return await this.http.post(URL_BASE+"checkSocket",
     bodyRequest,{headers: new HttpHeaders({
         "Content-Type": "application/json"
       })
@@ -104,7 +104,7 @@ try {
     apiKey:apiKey,
     password:password
   }
-  const result =  await this.http.post("http://localhost:3003/loginOnEmail",
+  const result =  await this.http.post(URL_BASE+"loginOnEmail",
   bodyRequest,{headers: new HttpHeaders({
       "Content-Type": "application/json"
     })
@@ -120,9 +120,9 @@ try {
       showConfirmButton: false,
       timer: 1900
     })
-    localStorage.setItem("jwToken", newToken);
-    //this.router.navigate(["/home"]);
+    this.router.navigate(["/home"]);
   },err =>{
+
   });
   return result;
 } catch (error) {

@@ -9,12 +9,25 @@ export class AuthGuardService implements CanActivate {
 
   constructor(private authSv: AuthService, private router: Router) { }
 
+/*
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+      let token = this.authSv.getToken();
+      if(token == null || token ==""){
+        return false;
+      }else{
+        return true
+      };
+
+  }*/
+
     canActivate() {
       let token = this.authSv.getToken();
-        if (token == null || token =="") {
+        if (token == null || token =="" || token == undefined) {
             console.log('No estás logueado');
             console.log(token);
-            this.router.navigate(['/']);
+            this.router.navigate(['/login']);
             return false;
         }
         return true;
