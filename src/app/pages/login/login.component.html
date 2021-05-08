@@ -1,0 +1,64 @@
+
+<div *ngIf="!isRegistro" class="contenedor">
+  <div class="form-data">
+    <h2>LOGIN</h2>
+    <div class="redes">
+      <a title="Microsoft" (click)="loginOAuth2('Microsoft')"><img class="ico-face" src="../../../assets/images/microsoft.svg" /></a>
+      <a title="Google" (click)="loginOAuth2('Google')"><img class="ico-google" src="../../../assets/images/buscar.svg" /></a>
+      <a title="Yahoo" (click)="loginOAuth2('Yahoo')"><img class="ico-apple" src="../../../assets/images/yahoo.svg" /></a>
+    </div>
+    <form>
+      <label>Correo:</label>
+      <input type="text" placeholder="example@domain.com" />
+      <label>Contraseña</label>
+      <input type="password" placeholder="*******" />
+      <hr>
+      <button class="btn-aceptar" type="submit" (click)=loginEmail()>Aceptar</button>
+    </form>
+    <a class="onregistro" (click)="ShowRegistro(true)">¿No tienes cuenta? crear una cuenta</a>
+  </div>
+</div>
+
+<div *ngIf="isRegistro" class="contenedor">
+  <div class="form-data">
+    <div class="barra">
+      <a (click)="ShowRegistro(false)"><img class="close-flecha" src="../../../assets/images/flecha-correcta.png" /></a>
+    </div>
+    <h2 (click)="ShowRegistro(false)">REGISTRO</h2>
+    <form>
+      <label>Nombre de usuario:</label>
+      <input type="text" placeholder="ignaciovg" />
+      <label>Nombre (s):</label>
+      <input type="text" placeholder="Jose Ignacio" />
+      <label>Paterno:</label>
+      <input type="text" placeholder="Vaqueiro" />
+      <label>Materno:</label>
+      <input type="text" placeholder="Gonzalez" />
+      <label>Correo:</label>
+      <input type="text" placeholder="example@domain.com" />
+      <label>Contraseña</label>
+      <input type="password" placeholder="******" />
+      <label>Confirmar contraseña</label>
+      <input type="password" placeholder="******" />
+      <hr>
+      <div class="div-row">
+        <button class="btn-aceptar" type="submit">Aceptar</button>
+        <button class="btn-cancelar">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<input type="hidden" #selection>
+<div class="card-container">
+  <div *ngFor="let user of listaUsuarios" class="card card-small" (click)="selection.value = user.email" tabindex="0">
+    <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+    <span>{{user.email}}</span>
+  </div>
+</div>
+
+<div class="terminal" [ngSwitch]="selection.value">
+  <div *ngFor="let item of listaUsuarios">
+    <pre *ngSwitchCase="item.email">{{item.email}}</pre>
+  </div>
+</div>

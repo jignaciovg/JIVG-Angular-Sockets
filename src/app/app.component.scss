@@ -1,0 +1,290 @@
+body {
+  background: #242323;
+  height: 100%;
+  width: 100%;
+}
+
+footer {
+  height: 100%;
+  background: darkcyan;
+  background-color: darkcyan;
+  width: 100%;
+}
+
+.contenedor{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  background: #242323;
+  padding-top: 8vh;
+  padding-bottom: 25vh;
+}
+
+.form-data{
+  width: 600px;
+  border: 0px solid #2d4a69;
+  background: transparent;
+  padding: 2rem;
+  /* offset-x | offset-y | blur-radius | color */
+  box-shadow: 5px 5px 15px black;
+}
+
+.redes{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding-bottom: 2.5rem;
+  padding-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.redes img{
+    width:60px;
+    height:60px;
+    filter: drop-shadow(1px 1px 2px white);
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.ico-face:hover{
+    cursor:pointer;
+    box-shadow: 0px 0px 23px blue;
+    transition: all 0.7s ease;
+}
+
+.ico-google:hover{
+    cursor:pointer;
+    box-shadow: 0px 0px 23px red;
+    transition: all 0.7s ease;
+}
+
+.ico-apple:hover{
+    cursor:pointer;
+    box-shadow: 0px 0px 23px yellow;
+    transition: all 0.7s ease;
+}
+
+form{
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+form label{
+  font-size: 19px;
+}
+
+form input{
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  text-align: center;
+  font-size: 16px;
+  border: 2px solid #2f2f4f;
+  background: transparent;
+  color: aliceblue;
+}
+
+.div-row{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:space-around;
+}
+
+
+
+form .btn-cancelar{
+  flex: 1 1 0;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  padding-bottom: .5rem;
+  padding-top: .5rem;
+  border-radius: 2rem;
+  background: transparent;
+  border: 2px solid darkred;
+  color: white;
+  font-size: 17px;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+form .btn-cancelar:hover{
+  background: darkred;
+  color: white;
+  transition: all 0.9s ease;
+  cursor: pointer;
+}
+
+form .btn-aceptar{
+  flex: 1 1 0;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  padding-bottom: .5rem;
+  padding-top: .5rem;
+  border-radius: 2rem;
+  background: transparent;
+  color: white;
+  font-size: 17px;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  border: 2px solid #2d4a69;
+}
+
+form .btn-aceptar:hover{
+  background: #33617c;
+  color: white;
+  transition: all 0.9s ease;
+  cursor: pointer;
+}
+
+form input:hover, input:focus{
+  border-radius: 2rem;
+  outline-width: 0;
+  outline: none;
+  border: 2px solid lightcyan;
+  transition: all 0.8s ease;
+}
+
+
+
+h2{
+  color: lightcyan;
+}
+
+.onregistro{
+  color: lightcyan;
+  text-decoration: none;
+}
+
+.onregistro:hover{
+  cursor:pointer;
+  text-decoration: underline;
+}
+
+.barra{
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.close-flecha{
+  position:absolute;
+  width: 35px;
+  height: 35px;
+  transform: rotate(180deg);
+}
+
+.close-flecha:hover{
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.close-registro{
+  border: 1px solid red;
+  font-weight: bold;
+  width: 90px;
+  height: 50px;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  justify-self: center;
+  color: whitesmoke;
+  font-size: 30px;
+  background: #242323;
+  border-radius: 50px;
+  margin: 0px;
+  padding-bottom: 50px;
+}
+
+.close-registro:hover{
+  background-color: darkred;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+hr{
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media(max-width:500px){
+  .redes img{
+    transition: all 2s ease;
+    width:90px;
+    height:50px;
+    background-color: whitesmoke;
+    border-radius: 60px;
+    padding: 10px;
+}
+  .contenedor{
+    padding-top: 2vh;
+    padding-bottom: 30vh;
+  }
+  .form-data{
+    width: 600px;
+    border: 0px solid #2d4a69;
+    background: transparent;
+    padding: 1rem;
+    box-shadow: 0px 0px 0px black;
+  }
+
+  form .btn-aceptar{
+    flex: 1 100%;
+    margin-left: 0rem;
+    margin-right: 0rem;
+  }
+
+  form .btn-cancelar{
+    flex: 1 100%;
+    margin-left: 0rem;
+    margin-right: 0rem;
+    margin-top: 0;
+  }
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media screen and (max-width: 768px) {
+
+  .contenedor{
+    padding-top: 8vh;
+    padding-bottom: 25vh;
+  }
+  form input{
+    border-radius: 2rem;
+  }
+
+  .close-registro{
+    background: #242323;
+    border-radius: 50px;
+    box-shadow: 0px 0px 0px black;
+    border: 0px solid red;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+  .contenedor{
+    padding-top: 8vh;
+    padding-bottom: 25vh;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+  .contenedor{
+  padding-top: 8vh;
+  padding-bottom: 25vh;
+  }
+}

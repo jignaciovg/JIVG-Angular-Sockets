@@ -1,0 +1,78 @@
+
+<h2>TOKEN</h2>
+<h2>{{ tokenjwt }}</h2>
+
+<h3>DATOS</h3>
+<h2>{{ tokenDecode | json }}</h2>
+
+<div class="btew">
+<button class="btn-logout" (click)="LogOut()">Cerrar Sesion</button>
+</div>
+<!--
+  <h3>Usuarios</h3>
+<div class="card-container">
+  <div *ngFor="let user of listaUsuarios" class="card card-small" tabindex="0">
+    <svg
+      class="material-icons"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+    >
+      <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+    </svg>
+    <span>{{ user.email }}</span>
+  </div>
+</div>-->
+
+<hr />
+
+
+
+<div class="contenedor">
+
+  <input type="hidden" #selection>
+
+  <div class="lista-contactos">
+      <div class="buscador">
+      <form>
+      <input type="text" placeholder="@usuario">
+      <button type="submit">Agregar</button>
+      </form>
+      </div>
+
+      <div *ngFor="let user of listaUsuarios" class="contacto-row" (click)="selection.value = user.email" tabindex="0">
+          <ul>
+              <li><img src={{user.photoUrl}} alt="imagen"></li>
+              <div class="contacto">
+              <li><h3>{{user.email}}</h3></li>
+              <li><p>En Linea</p></li>
+              </div>
+              <div class="opciones">
+              </div>
+          </ul>
+          <hr>
+      </div>
+
+  </div>
+
+  <div class="chat-box" [ngSwitch]="selection.value">
+    <div class="chat-info" *ngFor="let item of listaUsuarios">
+        <h2 *ngSwitchCase="item.email">Chat seleccionado: {{item.email}}</h2>
+    </div>
+
+    <div class="chat-msg">
+
+
+    </div>
+
+    <form>
+        <input type="text" placeholder="Escribe aqui tu mensaje...">
+        <button type="submit">Enviar</button>
+    </form>
+
+</div>
+
+
+
+</div>
