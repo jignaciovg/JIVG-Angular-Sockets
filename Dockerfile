@@ -9,7 +9,7 @@ RUN $(npm bin)/ng build --prod --aot
 
 FROM nginx
 WORKDIR /usr/share/nginx/html/
-COPY --from=builder /usr/src/app/dist/JIVG-Angular-Sockets/ /usr/share/nginx/html
+COPY --from=builder /usr/src/app/dist/my-app/ /usr/share/nginx/html
 EXPOSE 80 443
 
 CMD nginx -g 'daemon off;'
