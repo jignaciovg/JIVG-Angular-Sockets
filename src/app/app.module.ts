@@ -16,9 +16,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';¿
+const URL_BASE:string = environment.API.EndPoint.Node;
 
-const config: SocketIoConfig = { url: 'http://localhost:3003', options: {} };
+const config: SocketIoConfig = { url: URL_BASE, options: {} };
 @NgModule({
   declarations: [
     AppComponent,
