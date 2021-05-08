@@ -20,6 +20,8 @@ export class HomeComponent implements OnInit {
     this.suscription$ = this.socket.on('broadcast-message').subscribe((usersList: any) => {
       this.listaUsuarios = usersList;
     });
+
+
   }
 
   ngOnInit(): void {
@@ -33,9 +35,6 @@ export class HomeComponent implements OnInit {
   LogOut(){
     try {
       this.tokenDecode = this.authSvc.getDecodeToken();
-      this.suscription$ = this.socket.on('broadcast-message').subscribe((usersList: any) => {
-        this.listaUsuarios = usersList;
-      });
       this.authSvc.DeleteSocketId(this.tokenDecode.email).then(
         (user: any) => {
           this.socket.emit('disconnect', {
@@ -43,6 +42,9 @@ export class HomeComponent implements OnInit {
           });
         }
       );
+      /*this.suscription$ = this.socket.on('logout-user').subscribe((usersList: any) => {
+        this.listaUsuarios = usersList;
+      });*/
         localStorage.removeItem('jwToken');
         localStorage.removeItem('jwToken');
         this.router.navigate(["/login"]);
@@ -51,9 +53,6 @@ export class HomeComponent implements OnInit {
       localStorage.removeItem('jwToken');
       this.router.navigate(["/login"]);
     }
-    this.suscription$ = this.socket.on('broadcast-message').subscribe((usersList: any) => {
-      this.listaUsuarios = usersList;
-    });
 
     //this.tokenDecode = this.authSvc.getDecodeToken();
 

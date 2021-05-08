@@ -83,7 +83,7 @@ export class AuthService {
       Swal.fire({
         position: 'center',
         icon: 'success',
-        title: 'Usuario removido',
+        title: 'Sesion finalizada',
         text: email,
         showConfirmButton: false,
         timer: 1500
@@ -99,7 +99,7 @@ export class AuthService {
       apiKey:apiKey,
       password:password
     }
-    console.log('body:'+JSON.stringify(bodyRequest));
+    //console.log('body:'+JSON.stringify(bodyRequest));
 
     return await this.http.post("http://localhost:3003/loginOnEmail",
     bodyRequest,{headers: new HttpHeaders({
@@ -114,7 +114,7 @@ export class AuthService {
         title: 'Inicio de sesión exitoso, Token:',
         text: newToken,
         showConfirmButton: false,
-        timer: 1500
+        timer: 1900
       })
       localStorage.setItem("jwToken", newToken);
       this.router.navigate(["/home"]);
@@ -138,16 +138,14 @@ export class AuthService {
     }).subscribe(res =>{
       console.log(res);
       const newToken = (<any>res).token;
-      const userInf = (<any>res).email;
       localStorage.setItem("jwToken", newToken);
-      //localStorage.setItem("userInf", JSON.stringify(userInf));
       Swal.fire({
         position: 'center',
         icon: 'success',
         title: 'Inicio de sesión exitoso, Token:',
         text: newToken,
         showConfirmButton: false,
-        timer: 1500
+        timer: 1900
       })
     },err =>{
     });
