@@ -13,6 +13,7 @@ export class SocketioService {
 
   statusConnect: boolean = false;
 
+
   on(eventName: string) {
     return this.socket.fromEvent(eventName).pipe(map((data:any)=>data));
   }

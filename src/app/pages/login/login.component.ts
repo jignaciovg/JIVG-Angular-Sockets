@@ -12,14 +12,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  suscription$: Subscription;
+  //suscription$: Subscription;
   isRegistro:boolean = false;
   listaUsuarios: any[] = [];
 
   constructor(public socket: SocketioService, private authSvc: AuthService, private router: Router) {
-      this.suscription$ = this.socket.on('broadcast-message').subscribe((usersList: any) => {
-        this.listaUsuarios = usersList;
-      });
+
       this.socket.checkStatus();
   }
 
@@ -33,8 +31,8 @@ export class LoginComponent implements OnInit {
     this.isRegistro = accion;
   }
 
-  loginEmail(){
-    this.authSvc.UserLogin("pelusa@gmail.com","123afas",environment.API_KEY).then((user: any) => {
+  async loginEmail(){
+     await this.authSvc.UserLogin("pelusa@gmail.com","123afas",environment.API_KEY).then((user: any) => {
       this.socket.emit('signUp', {
         fullName: user.displayName,
         email: "pelusa@gmail.com",
@@ -48,7 +46,7 @@ export class LoginComponent implements OnInit {
         success: false,
         error
       }
-    })
+    });
   }
 
 
@@ -80,8 +78,6 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnDestroy(): void {
-    this.suscription$.unsubscribe();
-  }
+
 
 }

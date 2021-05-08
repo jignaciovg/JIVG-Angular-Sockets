@@ -16,12 +16,11 @@ export class HomeComponent implements OnInit {
   isRegistro:boolean = false;
   listaUsuarios: any[] = [];
 
-  constructor(public socket: SocketioService, private authSvc: AuthService, private router: Router) {
+  constructor(public socket: SocketioService, public authSvc: AuthService, private router: Router) {
+    this.socket.checkStatus();
     this.suscription$ = this.socket.on('broadcast-message').subscribe((usersList: any) => {
       this.listaUsuarios = usersList;
     });
-
-
   }
 
   ngOnInit(): void {
@@ -41,10 +40,7 @@ export class HomeComponent implements OnInit {
             email: user.email
           });
         }
-      );
-      /*this.suscription$ = this.socket.on('logout-user').subscribe((usersList: any) => {
-        this.listaUsuarios = usersList;
-      });*/
+      )
         localStorage.removeItem('jwToken');
         localStorage.removeItem('jwToken');
         this.router.navigate(["/login"]);
@@ -64,5 +60,7 @@ export class HomeComponent implements OnInit {
       localStorage.removeItem('jwToken');*/
     //this.router.navigate(["/login"]);
   }
-
+  /*ngOnDestroy(): void {
+    this.suscription$.unsubscribe();
+  }*/
 }

@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import jwt_decode from "jwt-decode";
 import { ActivatedRoute, Router } from '@angular/router';
+import { SocketioService } from 'src/app/services/socketio.service';
 
 const URL_BASE:string = environment.API.EndPoint.Node;
 
@@ -16,8 +17,9 @@ const URL_BASE:string = environment.API.EndPoint.Node;
 export class AuthService {
 
   token:any;
+  lista:any ={};
 
-  constructor(private fireAuth: AngularFireAuth, private http:HttpClient,private router: Router) {
+  constructor(public socket: SocketioService,private fireAuth: AngularFireAuth, private http:HttpClient,private router: Router) {
     firebase.initializeApp(environment.FIREBASE_SETTINGS);
     firebase.auth().onAuthStateChanged((user: any) => {
       //console.log('Evento onAuthStateChanged: ', user);
@@ -73,13 +75,14 @@ export class AuthService {
     let bodyRequest ={
       email:email
     }
-    console.log('body:'+JSON.stringify(bodyRequest));
+
+    //console.log('body:'+JSON.stringify(bodyRequest));
     return await this.http.post("http://localhost:3003/checkSocket",
     bodyRequest,{headers: new HttpHeaders({
         "Content-Type": "application/json"
       })
     }).subscribe(res =>{
-      console.log(res);
+      //console.log(res);
       Swal.fire({
         position: 'center',
         icon: 'success',
@@ -94,32 +97,37 @@ export class AuthService {
   }
   //User Login
   async UserLogin (email:string,password:string,apiKey:string) {
-    let bodyRequest ={
-      email:email,
-      apiKey:apiKey,
-      password:password
-    }
     //console.log('body:'+JSON.stringify(bodyRequest));
-
-    return await this.http.post("http://localhost:3003/loginOnEmail",
-    bodyRequest,{headers: new HttpHeaders({
-        "Content-Type": "application/json"
-      })
-    }).subscribe(res =>{
-      const newToken = (<any>res).token;
-      localStorage.setItem("jwToken", newToken);
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Inicio de sesión exitoso, Token:',
-        text: newToken,
-        showConfirmButton: false,
-        timer: 1900
-      })
-      localStorage.setItem("jwToken", newToken);
-      this.router.navigate(["/home"]);
-    },err =>{
-    });
+try {
+  let bodyRequest ={
+    email:email,
+    apiKey:apiKey,
+    password:password
+  }
+  const result =  await this.http.post("http://localhost:3003/loginOnEmail",
+  bodyRequest,{headers: new HttpHeaders({
+      "Content-Type": "application/json"
+    })
+  }).subscribe(res =>{
+    let newToken = (<any>res).token;
+    localStorage.setItem("jwToken", newToken);
+    console.log(newToken);
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Inicio de sesión exitoso, Token:',
+      text: newToken,
+      showConfirmButton: false,
+      timer: 1900
+    })
+    localStorage.setItem("jwToken", newToken);
+    //this.router.navigate(["/home"]);
+  },err =>{
+  });
+  return result;
+} catch (error) {
+  return error;
+}
 
     }
 

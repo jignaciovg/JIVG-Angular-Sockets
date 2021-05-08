@@ -40,8 +40,7 @@
       <button type="submit">Agregar</button>
       </form>
       </div>
-
-      <div *ngFor="let user of listaUsuarios" class="contacto-row" (click)="selection.value = user.email" tabindex="0">
+      <div *ngFor="let user of this.listaUsuarios" class="contacto-row" (click)="selection.value = user.email" tabindex="0">
           <ul>
               <li><img src={{user.photoUrl}} alt="imagen"></li>
               <div class="contacto">
